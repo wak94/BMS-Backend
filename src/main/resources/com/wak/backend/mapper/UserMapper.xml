@@ -4,11 +4,35 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wak.backend.mapper.UserMapper">
 
+    <resultMap id="UserVOResultMap" type="com.wak.backend.entity.vo.UserVO">
+        <result column="username" property="username"/>
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="gender" property="gender"/>
+        <result column="last_modified_time" property="lastModifiedTime"/>
+    </resultMap>
+
     <select id="selectByUsername" resultType="com.wak.backend.entity.User">
         SELECT *
         FROM user
         WHERE username = #{username}
-          AND status = 1
+    </select>
+    <select id="selectUser" resultMap="UserVOResultMap">
+        select username, name, phone, gender, email, last_modified_time
+        from user
+        <where>
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%', #{query.username}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                AND phone LIKE CONCAT('%', #{query.phone}, '%')
+            </if>
+        </where>
+    </select>
+    <select id="selectAllUser" resultMap="UserVOResultMap">
+        select username, name, phone, gender, email, last_modified_time
+        from user
     </select>
 
     <insert id="insert">

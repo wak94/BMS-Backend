@@ -1,9 +1,9 @@
-package com.wak.backend.entity.DTO;
+package com.wak.backend.entity.dto;
 
 import lombok.Data;
 
 @Data
-public class LoginDTO {
+public class LoginRequest {
     private String username;
     private String password;
 }

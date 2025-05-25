@@ -1,4 +1,9 @@
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
   application:
     name: Backend
   datasource:
@@ -13,3 +18,12 @@ mybatis:
   configuration:
     local-cache-scope: session
     cache-enabled: false
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+jwt:
+  secret: "]%>2DNQpQMF!uM7,.]t8v.>k1H)AA>]_"
+  expiration: 86400000
+  header: Authorization
+  token-prefix: "Bearer "
+logging:
+  level:
+    com.wak.backend.mapper: DEBUG
