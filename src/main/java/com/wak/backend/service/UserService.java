@@ -12,4 +12,6 @@ public interface UserService {
     Result<Map<String, String>> login(LoginRequest request);
 
     Result<PageInfo<UserVO>> userList(QueryRequest request);
+
+    Result<Boolean> userSave(UserVO user);
 }
